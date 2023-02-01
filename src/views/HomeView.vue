@@ -1,18 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <questionStepper :currentStep="currentStep" @stepChanged="currentStep=$event"/>
+    <div class="mt-4">
+    <addPeople v-if="currentStep==1"/>
+    <questionsForm v-if="currentStep==2"/>
+  </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+  import addPeople from '../components/addPeople.vue'
+  import questionStepper from '../components/stepper.vue'
+  import questionsForm from '../components/questionsForm.vue'
+  export default {
+    name: 'HomePage',
+    data(){
+      return{
+        currentStep:1
+      }
+    },
+    
+    components: {
+      addPeople,
+      questionStepper,
+      questionsForm
+    },
   }
-}
 </script>

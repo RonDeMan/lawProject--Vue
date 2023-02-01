@@ -1,32 +1,41 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-main class="Page-padding" style="direction:rtl">
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
+<script>
+import { mapActions } from 'vuex';
+
+import {getQuestions} from './DL/questions.js'
+
+
+export default {
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+
+  async created(){
+    getQuestions().then((res) => this.setQuestions(res))
+  },
+
+  methods:{
+    ...mapActions(["setQuestions"])
+  }
+};
+</script>
+<style scoped>
+  .Page-padding{
+    margin: 3rem;
+  }
+</style>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .v-label{
+    left:auto !important;
+    right:1rem !important
+  }
 </style>
