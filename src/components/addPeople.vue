@@ -25,10 +25,6 @@ export default {
     },
     methods:{
         ...mapActions(["addNewPerson","updatePerson", "deletePerson"]),
-        updateInfo(event,index){
-            console.log(event)
-            console.log(index)
-        }
     }
 }
 </script>

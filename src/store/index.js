@@ -28,12 +28,35 @@ export default new Vuex.Store({
       {text: "אב", value:7},
       {text: "אם", value:8}
     ],
+
+    relationships:[
+      {text: "בן/בת זוג לנישואין", value:0},
+      {text: "בן/בת זוג", value:1},
+      {text: "ילד", value:2},
+      {text: "הורה", value:3},
+      {text:"סבא/סבתה", value:4},
+      {text: "אח/אחות", value:5},
+      {text: "חבר טוב", value:6},
+      {text: "מטפל", value:7},
+      {text: "אחר", value:8}
+    ],
+
     questions:[],
     questionAnswers:[],
   },
   getters: {
-    getQuestions(state){
+    getQuestionPages(state){
       return state.questions
+    },
+
+    getQuestions(state){
+      let questions = []
+      state.questions.forEach(page => page.questions.forEach(question=> questions.push(question)))
+      return questions
+    },
+
+    getRelationships(state){
+      return state.relationships
     },
 
     getNicknames(state){

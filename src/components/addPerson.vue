@@ -1,7 +1,7 @@
 <template>
     <div>
         
-    <v-form style="background-color: lightblue;">
+    <v-form style="background-color: #dcf0ff;">
         <v-container>
             <v-btn @click="$emit('deletePerson')"> <v-icon> mdi-delete </v-icon> </v-btn>
             <v-row>
@@ -20,7 +20,7 @@
                 <v-text-field :value="person.stateId"  @change="emitUpdate({name:'stateId',value:$event})" label="ת''ז"/>
             </v-col>
             <v-col>
-                <v-textarea :value="person.relationship"  @change="emitUpdate({name:'relationship',value:$event})" label="תאר את הקשר שלך עם הבן אדם"/>
+                <v-select :value="person.relationship"  @change="emitUpdate({name:'relationship',value:$event})" :items="getRelationships" label="תאר את הקשר שלך עם הבן אדם"/>
             </v-col>
             </v-row>
         </v-container>
@@ -44,7 +44,7 @@ export default {
         }
     },
     computed:{
-        ...mapGetters(["getNicknames"]),
+        ...mapGetters(["getNicknames","getRelationships"]),
     },
     methods:{
         emitUpdate({name,value}){
