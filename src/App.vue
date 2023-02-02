@@ -60,9 +60,10 @@ export default {
         case "v-select":
           switch(questionItems){
             case "people":
-              let person = this.people[answer.answer]
-              return person.nickname == 0? `${person.firstName} ${person.lastName}` : this.getNicknames[person.nickname]
-
+              {
+                let person = this.people[answer.answer]
+                return person.nickname == 0? `${person.firstName} ${person.lastName}` : this.getNicknames[person.nickname]
+              }
             default:
               return "הסלקט הזה לא קיים"
 
