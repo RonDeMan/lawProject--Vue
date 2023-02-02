@@ -52,7 +52,7 @@ export default {
       
       switch(questionType){
         case "v-checkbox":
-          return answer.answer ? "כן" : "לא"
+          return answer?.answer ? "כן" : "לא"
         
         case "v-text-field":
           return answer.answer
@@ -61,8 +61,8 @@ export default {
           switch(questionItems){
             case "people":
               {
-                let person = this.people[answer.answer]
-                return person.nickname == 0? `${person.firstName} ${person.lastName}` : this.getNicknames[person.nickname]
+                let person = this.getPeople[answer.answer]
+                return person.nickname == 0? `${person.firstName} ${person.lastName}` : this.getNicknames[person.nickname].text
               }
             default:
               return "הסלקט הזה לא קיים"
